@@ -71,3 +71,11 @@ dust.install_linux_x86_64=dust-v1.0.0-x86_64-unknown-linux-musl/dust
 dust.url_linux_x86_64=https://github.com/bootandy/dust/releases/download/v1.0.0/dust-v1.0.0-x86_64-unknown-linux-musl.tar.gz
 dust.hash_linux_x86_64=ee8a4bb8d587df5040ce9d4eccac0baa1f1c603db0b4c59a7fe8545f3ce7cbec
 
+hck.version=0.10.0
+hck.version_url=https://api.github.com/repos/sstadick/hck/releases/latest
+hck.version_find_regex="tag_name": "[^"]*"
+hck.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+hck.rename=hck
+hck.install_linux_x86_64=hck-linux-amd64
+hck.url_linux_x86_64=https://github.com/sstadick/hck/releases/download/v0.10.0/hck-linux-amd64
+hck.hash_linux_x86_64=c79941e5c6d6ccdd6e36abfe0aff0c2e73579dc7b56cf06a9c3a22033090d673
