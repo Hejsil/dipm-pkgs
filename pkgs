@@ -46,3 +46,12 @@ btop.install_linux_x86_64=btop/bin/btop
 btop.url_linux_x86_64=https://github.com/aristocratos/btop/releases/download/v1.3.2/btop-x86_64-linux-musl.tbz
 btop.hash_linux_x86_64=9f4dce57d550d0ebec415b46c1949152989ba66dd4be5950741b74e12b231ede
 
+jq.version=1.7.1
+jq.version_url=https://api.github.com/repos/jqlang/jq/releases/latest
+jq.version_find_regex="tag_name": "[^"]*"
+jq.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+jq.rename=jq
+jq.install_linux_x86_64=jq-linux-amd64
+jq.url_linux_x86_64=https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64
+jq.hash_linux_x86_64=5942c9b0934e510ee61eb3e30273f1b3fe2590df93933a93d7c58b81d19c8ff5
+
