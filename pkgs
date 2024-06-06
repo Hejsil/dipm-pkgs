@@ -30,3 +30,11 @@ zoxide.install=zoxide
 zoxide.url_linux_x86_64=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz
 zoxide.hash_linux_x86_64=fbc22c115a252f9a5c73301e35ed695810d020126b126c3d0e47f0b31f2255a0
 
+eza.version=0.18.17
+eza.version_url=https://api.github.com/repos/eza-community/eza/releases/latest
+eza.version_find_regex="tag_name": "[^"]*"
+eza.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+eza.install=eza
+eza.url_linux_x86_64=https://github.com/eza-community/eza/releases/download/v0.18.17/eza_x86_64-unknown-linux-musl.tar.gz
+eza.hash_linux_x86_64=2f11fc2f66790d54981a745fc282d8438fc09aaf0c2d1d7dcda76c8b66cfc1d5
+
