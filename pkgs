@@ -22,3 +22,11 @@ rg.install=ripgrep-14.1.0-x86_64-unknown-linux-musl/rg
 rg.url_linux_x86_64=https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz
 rg.hash_linux_x86_64=f84757b07f425fe5cf11d87df6644691c644a5cd2348a2c670894272999d3ba7
 
+zoxide.version=0.9.4
+zoxide.version_url=https://api.github.com/repos/ajeetdsouza/zoxide/releases/latest
+zoxide.version_find_regex="tag_name": "[^"]*"
+zoxide.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+zoxide.install=zoxide
+zoxide.url_linux_x86_64=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz
+zoxide.hash_linux_x86_64=fbc22c115a252f9a5c73301e35ed695810d020126b126c3d0e47f0b31f2255a0
+
