@@ -10,7 +10,8 @@ pkg_field() {
     grep "${pkg}.${field}=" pkgs | cut -d'=' -f2-
 }
 
-all_pkgs | while read -r pkg; do
+check_pkg() {
+    pkg=$1
     version=$(pkg_field "$pkg" 'version')
     version_url=$(pkg_field "$pkg" 'version_url')
     version_find_regex=$(pkg_field "$pkg" 'version_find_regex')
@@ -23,4 +24,15 @@ all_pkgs | while read -r pkg; do
     if [ "$version" != "$new_version" ]; then
         echo "$pkg $version -> $new_version" >&2
     fi
-done
+}
+
+check_all() {
+    all_pkgs | while read -r pkg; do
+        check_pkg "$pkg"
+    done
+}
+
+case $1 in
+    '') check_all ;;
+    *) check_pkg "$1" ;;
+esac
