@@ -1,4 +1,7 @@
 fzf.version=0.53.0
+fzf.version_url=https://api.github.com/repos/junegunn/fzf/releases/latest
+fzf.version_find_regex="tag_name": "[^"]*"
+fzf.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
 fzf.install=fzf
 fzf.url_linux_x86_64=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-linux_amd64.tar.gz
 fzf.hash_linux_x86_64=af2663c3309967dc191d21537e53c2e9f8a37f490a32456b9498a006f05e3796

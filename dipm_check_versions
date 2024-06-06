@@ -1,0 +1,26 @@
+#!/bin/sh
+
+all_pkgs() {
+    grep -o '^[^.]*\.' pkgs | sort -u | tr -d '.'
+}
+
+pkg_field() {
+    pkg=$1
+    field=$2
+    grep "${pkg}.${field}=" pkgs | cut -d'=' -f2-
+}
+
+all_pkgs | while read -r pkg; do
+    version=$(pkg_field "$pkg" 'version')
+    version_url=$(pkg_field "$pkg" 'version_url')
+    version_find_regex=$(pkg_field "$pkg" 'version_find_regex')
+    version_extract_regex=$(pkg_field "$pkg" 'version_extract_regex')
+
+    new_version=$(curl -s "$version_url" |
+        grep -o "$version_find_regex" |
+        grep -o "$version_extract_regex")
+
+    if [ "$version" != "$new_version" ]; then
+        echo "$pkg $version -> $new_version" >&2
+    fi
+done
