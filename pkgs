@@ -14,3 +14,11 @@ fd.install=fd-v10.1.0-x86_64-unknown-linux-musl/fd
 fd.url_linux_x86_64=https://github.com/sharkdp/fd/releases/download/v10.1.0/fd-v10.1.0-x86_64-unknown-linux-musl.tar.gz
 fd.hash_linux_x86_64=f8fa73aa005e71598c1cdbb03ae6979fd016d5a8aaf92ee84ed6f8f186c58ead
 
+rg.version=14.1.0
+rg.version_url=https://api.github.com/repos/BurntSushi/ripgrep/releases/latest
+rg.version_find_regex="tag_name": "[^"]*"
+rg.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+rg.install=ripgrep-14.1.0-x86_64-unknown-linux-musl/rg
+rg.url_linux_x86_64=https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz
+rg.hash_linux_x86_64=f84757b07f425fe5cf11d87df6644691c644a5cd2348a2c670894272999d3ba7
+
