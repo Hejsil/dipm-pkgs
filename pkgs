@@ -79,3 +79,11 @@ hck.rename=hck
 hck.install_linux_x86_64=hck-linux-amd64
 hck.url_linux_x86_64=https://github.com/sstadick/hck/releases/download/v0.10.0/hck-linux-amd64
 hck.hash_linux_x86_64=c79941e5c6d6ccdd6e36abfe0aff0c2e73579dc7b56cf06a9c3a22033090d673
+
+ouch.version=0.5.1
+ouch.version_url=https://api.github.com/repos/ouch-org/ouch/releases/latest
+ouch.version_find_regex="tag_name": "[^"]*"
+ouch.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+ouch.install_linux_x86_64=ouch-x86_64-unknown-linux-musl/ouch
+ouch.url_linux_x86_64=https://github.com/ouch-org/ouch/releases/download/0.5.1/ouch-x86_64-unknown-linux-musl.tar.gz
+ouch.hash_linux_x86_64=ae03bf5b7510794c4e784d63aeb81acb72b68086160969c9baad798564e94608
