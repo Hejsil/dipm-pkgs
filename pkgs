@@ -2,7 +2,7 @@ fzf.version=0.53.0
 fzf.version_url=https://api.github.com/repos/junegunn/fzf/releases/latest
 fzf.version_find_regex="tag_name": "[^"]*"
 fzf.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
-fzf.install=fzf
+fzf.install_linux_x86_64=fzf
 fzf.url_linux_x86_64=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-linux_amd64.tar.gz
 fzf.hash_linux_x86_64=af2663c3309967dc191d21537e53c2e9f8a37f490a32456b9498a006f05e3796
 
@@ -10,7 +10,7 @@ fd.version=10.1.0
 fd.version_url=https://api.github.com/repos/sharkdp/fd/releases/latest
 fd.version_find_regex="tag_name": "[^"]*"
 fd.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
-fd.install=fd-v10.1.0-x86_64-unknown-linux-musl/fd
+fd.install_linux_x86_64=fd-v10.1.0-x86_64-unknown-linux-musl/fd
 fd.url_linux_x86_64=https://github.com/sharkdp/fd/releases/download/v10.1.0/fd-v10.1.0-x86_64-unknown-linux-musl.tar.gz
 fd.hash_linux_x86_64=f8fa73aa005e71598c1cdbb03ae6979fd016d5a8aaf92ee84ed6f8f186c58ead
 
@@ -18,7 +18,7 @@ rg.version=14.1.0
 rg.version_url=https://api.github.com/repos/BurntSushi/ripgrep/releases/latest
 rg.version_find_regex="tag_name": "[^"]*"
 rg.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
-rg.install=ripgrep-14.1.0-x86_64-unknown-linux-musl/rg
+rg.install_linux_x86_64=ripgrep-14.1.0-x86_64-unknown-linux-musl/rg
 rg.url_linux_x86_64=https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz
 rg.hash_linux_x86_64=f84757b07f425fe5cf11d87df6644691c644a5cd2348a2c670894272999d3ba7
 
@@ -26,7 +26,7 @@ zoxide.version=0.9.4
 zoxide.version_url=https://api.github.com/repos/ajeetdsouza/zoxide/releases/latest
 zoxide.version_find_regex="tag_name": "[^"]*"
 zoxide.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
-zoxide.install=zoxide
+zoxide.install_linux_x86_64=zoxide
 zoxide.url_linux_x86_64=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz
 zoxide.hash_linux_x86_64=fbc22c115a252f9a5c73301e35ed695810d020126b126c3d0e47f0b31f2255a0
 
@@ -34,7 +34,7 @@ eza.version=0.18.17
 eza.version_url=https://api.github.com/repos/eza-community/eza/releases/latest
 eza.version_find_regex="tag_name": "[^"]*"
 eza.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
-eza.install=eza
+eza.install_linux_x86_64=eza
 eza.url_linux_x86_64=https://github.com/eza-community/eza/releases/download/v0.18.17/eza_x86_64-unknown-linux-musl.tar.gz
 eza.hash_linux_x86_64=2f11fc2f66790d54981a745fc282d8438fc09aaf0c2d1d7dcda76c8b66cfc1d5
 
@@ -42,7 +42,7 @@ btop.version=0.18.17
 btop.version_url=https://api.github.com/repos/aristocratos/btop/releases/latest
 btop.version_find_regex="tag_name": "[^"]*"
 btop.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
-btop.install=btop/bin/btop
+btop.install_linux_x86_64=btop/bin/btop
 btop.url_linux_x86_64=https://github.com/aristocratos/btop/releases/download/v1.3.2/btop-x86_64-linux-musl.tbz
 btop.hash_linux_x86_64=9f4dce57d550d0ebec415b46c1949152989ba66dd4be5950741b74e12b231ede
 
