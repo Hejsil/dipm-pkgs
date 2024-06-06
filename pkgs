@@ -6,3 +6,11 @@ fzf.install=fzf
 fzf.url_linux_x86_64=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-linux_amd64.tar.gz
 fzf.hash_linux_x86_64=af2663c3309967dc191d21537e53c2e9f8a37f490a32456b9498a006f05e3796
 
+fd.version=10.1.0
+fd.version_url=https://api.github.com/repos/sharkdp/fd/releases/latest
+fd.version_find_regex="tag_name": "[^"]*"
+fd.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+fd.install=fd-v10.1.0-x86_64-unknown-linux-musl/fd
+fd.url_linux_x86_64=https://github.com/sharkdp/fd/releases/download/v10.1.0/fd-v10.1.0-x86_64-unknown-linux-musl.tar.gz
+fd.hash_linux_x86_64=f8fa73aa005e71598c1cdbb03ae6979fd016d5a8aaf92ee84ed6f8f186c58ead
+
