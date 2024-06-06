@@ -87,3 +87,11 @@ ouch.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
 ouch.install_linux_x86_64=ouch-x86_64-unknown-linux-musl/ouch
 ouch.url_linux_x86_64=https://github.com/ouch-org/ouch/releases/download/0.5.1/ouch-x86_64-unknown-linux-musl.tar.gz
 ouch.hash_linux_x86_64=ae03bf5b7510794c4e784d63aeb81acb72b68086160969c9baad798564e94608
+
+sad.version=0.4.29
+sad.version_url=https://api.github.com/repos/ms-jpq/sad/releases/latest
+sad.version_find_regex="tag_name": "[^"]*"
+sad.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+sad.install_linux_x86_64=sad
+sad.url_linux_x86_64=https://github.com/ms-jpq/sad/releases/download/v0.4.29/x86_64-unknown-linux-musl.zip
+sad.hash_linux_x86_64=4387c827e9f4c84b7bd15acf19a032c7bc1ef93ae0f8833bc47f600b59cd8e6b
