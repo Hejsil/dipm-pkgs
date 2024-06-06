@@ -55,3 +55,11 @@ jq.install_linux_x86_64=jq-linux-amd64
 jq.url_linux_x86_64=https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64
 jq.hash_linux_x86_64=5942c9b0934e510ee61eb3e30273f1b3fe2590df93933a93d7c58b81d19c8ff5
 
+bat.version=0.24.0
+bat.version_url=https://api.github.com/repos/sharkdp/bat/releases/latest
+bat.version_find_regex="tag_name": "[^"]*"
+bat.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+bat.install_linux_x86_64=bat-v0.24.0-x86_64-unknown-linux-musl/bat
+bat.url_linux_x86_64=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-unknown-linux-musl.tar.gz
+bat.hash_linux_x86_64=d39a21e3da57fe6a3e07184b3c1dc245f8dba379af569d3668b6dcdfe75e3052
+
