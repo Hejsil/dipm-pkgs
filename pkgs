@@ -111,3 +111,11 @@ just.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
 just.install_linux_x86_64=just
 just.url_linux_x86_64=https://github.com/casey/just/releases/download/1.28.0/just-1.28.0-x86_64-unknown-linux-musl.tar.gz
 just.hash_linux_x86_64=a99cc9115c274af56355f87b979c0ac109eb250b0c8cf24375231c4e679f735f
+
+micro.version=2.0.13
+micro.version_url=https://api.github.com/repos/zyedidia/micro/releases/latest
+micro.version_find_regex="tag_name": "[^"]*"
+micro.version_extract_regex=[0-9]*\.[0-9]*\.[0-9]*
+micro.install_linux_x86_64=micro-2.0.13/micro
+micro.url_linux_x86_64=https://github.com/zyedidia/micro/releases/download/v2.0.13/micro-2.0.13-linux64-static.tar.gz
+micro.hash_linux_x86_64=5372bdccc351535090760ac7814520e900b550dd693f47d7954f634aa9ed70db
