@@ -18,8 +18,8 @@ check_pkg() {
     version_extract_regex=$(pkg_field "$pkg" 'version_extract_regex')
 
     new_version=$(curl -s "$version_url" |
-        grep -o "$version_find_regex" |
-        grep -o "$version_extract_regex")
+        grep -m1 -o "$version_find_regex" |
+        grep -m1 -o "$version_extract_regex")
 
     if [ "$version" != "$new_version" ]; then
         echo "$pkg $version -> $new_version" >&2
