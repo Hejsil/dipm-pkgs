@@ -1,12 +1,12 @@
 #!/bin/sh
 
 all_pkgs() {
-    grep -o '^\s*\[.*\.pkg\]' pkgs.ini | sed -e 's/^\s*\[//' -e 's/\.pkg\]$//'
+    grep -o '^\s*\[.*\.info\]' pkgs.ini | sed -e 's/^\s*\[//' -e 's/\.info\]$//'
 }
 
 ini_section() {
     section=$1
-    awk "/\[.*\]/ {print_it=0} /^\[$section\]$/ {print_it=1} print_it"
+    awk "/^\[.*\]$/ {print_it=0} /^\[$section\]$/ {print_it=1} print_it"
 }
 
 ini_field() {
@@ -17,7 +17,7 @@ ini_field() {
 check_pkg() {
     pkg=$1
 
-    pkg_section=$(ini_section "$pkg\.pkg" <pkgs.ini)
+    pkg_section=$(ini_section "$pkg\.info" <pkgs.ini)
     update_section=$(ini_section "$pkg\.update" <pkgs.ini)
 
     version=$(echo "$pkg_section" | ini_field 'version')
