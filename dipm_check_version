@@ -1,25 +1,33 @@
 #!/bin/sh
 
 all_pkgs() {
-    grep -o '^[^.]*\.' pkgs | sort -u | tr -d '.'
+    grep -o '^\s*\[.*\.pkg\]' pkgs.ini | sed -e 's/^\s*\[//' -e 's/\.pkg\]$//'
 }
 
-pkg_field() {
-    pkg=$1
-    field=$2
-    grep "${pkg}.${field}=" pkgs | cut -d'=' -f2-
+ini_section() {
+    section=$1
+    awk "/\[.*\]/ {print_it=0} /^\[$section\]$/ {print_it=1} print_it"
+}
+
+ini_field() {
+    field=$1
+    grep "${field}=" | cut -d'=' -f2-
 }
 
 check_pkg() {
     pkg=$1
-    version=$(pkg_field "$pkg" 'version')
-    version_url=$(pkg_field "$pkg" 'version_url')
-    version_find_regex=$(pkg_field "$pkg" 'version_find_regex')
-    version_extract_regex=$(pkg_field "$pkg" 'version_extract_regex')
 
-    new_version=$(curl -s "$version_url" |
-        grep -m1 -o "$version_find_regex" |
-        grep -m1 -o "$version_extract_regex")
+    pkg_section=$(ini_section "$pkg\.pkg" <pkgs.ini)
+    update_section=$(ini_section "$pkg\.update" <pkgs.ini)
+
+    version=$(echo "$pkg_section" | ini_field 'version')
+    url=$(echo "$update_section" | ini_field 'url')
+    find_version_regex=$(echo "$update_section" | ini_field 'find_version_regex')
+    extract_version_regex=$(echo "$update_section" | ini_field 'extract_version_regex')
+
+    new_version=$(curl -s "$url" |
+        grep -m1 -o "$find_version_regex" |
+        grep -m1 -o "$extract_version_regex")
 
     if [ "$version" != "$new_version" ]; then
         echo "$pkg $version -> $new_version" >&2
