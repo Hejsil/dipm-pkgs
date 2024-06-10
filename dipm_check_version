@@ -21,13 +21,25 @@ check_pkg() {
     update_section=$(ini_section "$pkg\.update" <pkgs.ini)
 
     version=$(echo "$pkg_section" | ini_field 'version')
-    url=$(echo "$update_section" | ini_field 'url')
-    find_version_regex=$(echo "$update_section" | ini_field 'find_version_regex')
-    extract_version_regex=$(echo "$update_section" | ini_field 'extract_version_regex')
+    new_version=''
 
-    new_version=$(curl -s "$url" |
-        grep -m1 -o "$find_version_regex" |
-        grep -m1 -o "$extract_version_regex")
+    github_repo=$(echo "$update_section" | ini_field 'github')
+    if [ -n "$github_repo" ]; then
+        find_version_regex='[0-9]*\.[0-9]*\.[0-9]*</id>'
+        extract_version_regex='[0-9]*\.[0-9]*\.[0-9]*'
+        content=$(curl -s "https://github.com/$github_repo/releases.atom")
+        new_version=$(echo "$content" |
+            grep -m1 -o "$find_version_regex" |
+            grep -m1 -o "$extract_version_regex")
+
+        if [ -z "$new_version" ]; then
+            echo "error: could not find version for '$pkg' in" >&2
+            return 1
+        fi
+    else
+        echo "error: cannot check '$pkg' for updates" >&2
+        return 1
+    fi
 
     if [ "$version" != "$new_version" ]; then
         echo "$pkg $version -> $new_version" >&2
