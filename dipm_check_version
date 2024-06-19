@@ -25,12 +25,12 @@ check_pkg() {
 
     github_repo=$(echo "$update_section" | ini_field 'github')
     if [ -n "$github_repo" ]; then
-        find_version_regex='[0-9]*\.[0-9]*\.[0-9]*</id>'
-        extract_version_regex='[0-9]*\.[0-9]*\.[0-9]*'
+        find_version_regex='[0-9]*\.[0-9]*(\.[0-9]*)?</id>'
+        extract_version_regex='[0-9]*\.[0-9]*(\.[0-9]*)?'
         content=$(curl -s "https://github.com/$github_repo/releases.atom")
         new_version=$(echo "$content" |
-            grep -m1 -o "$find_version_regex" |
-            grep -m1 -o "$extract_version_regex")
+            grep -m1 -Eo "$find_version_regex" |
+            grep -m1 -Eo "$extract_version_regex")
 
         if [ -z "$new_version" ]; then
             echo "error: could not find version for '$pkg' in" >&2
@@ -47,8 +47,9 @@ check_pkg() {
 }
 
 check_all() {
-    all_pkgs | while read -r pkg; do
+    all_pkgs | sort -R | while read -r pkg; do
         check_pkg "$pkg"
+        sleep 1s # Rate limit
     done
 }
 
