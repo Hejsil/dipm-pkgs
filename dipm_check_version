@@ -25,7 +25,7 @@ check_pkg() {
 
     github_repo=$(echo "$update_section" | ini_field 'github')
     if [ -n "$github_repo" ]; then
-        extract_version_regex='[0-9]+\.[0-9]+(\.[0-9]+)?'
+        extract_version_regex='[0-9]+\.[0-9]+(\.[0-9]+)?(\.[0-9]+)?'
         find_version_regex="/($pkg)?-?v?$extract_version_regex</id>"
         content=$(curl -s "https://github.com/$github_repo/releases.atom")
         new_version=$(echo "$content" |
