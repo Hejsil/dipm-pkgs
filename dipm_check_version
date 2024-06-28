@@ -11,7 +11,7 @@ ini_section() {
 
 ini_field() {
     field=$1
-    grep "${field}=" | cut -d'=' -f2-
+    grep "${field} = " | cut -d ' ' -f3-
 }
 
 check_pkg() {
