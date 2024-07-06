@@ -1,0 +1,109 @@
+#!/bin/sh -x
+
+os=$(uname -s | tr '[:upper:]' '[:lower:]')
+arch1=$(uname -m)
+case $arch1 in
+    x86_64) arch2=amd64 ;;
+    *) arch2=$arch1 ;;
+esac
+
+github() {
+    repo=$1
+    url=$2
+    name=$(echo "$repo" | cut -d'/' -f2)
+
+    if grep "\[$name\.info\]" pkgs.ini; then
+        echo "$name already exists" >&2
+        return 1
+    fi
+
+    content=$(mktemp -t "${name}_dipm.XXXXXXXXXX")
+    urls=$(mktemp -t "${name}_dipm.XXXXXXXXXX")
+    download_dir=$(mktemp -dt "${name}_dipm.XXXXXXXXXX")
+    cache -- curl -s "https://api.github.com/repos/$repo/releases/latest" >"$content"
+    version=$(jq -r '.tag_name' "$content" | grep -Eo '[0-9]+\.[0-9]+(\.[0-9]+)?(\.[0-9]+)?')
+
+    jq -r '.assets[].browser_download_url' "$content" >"$urls"
+
+    [ -z "$url" ] && url=$({
+        grep -iF "${os}" "$urls"
+        grep -iF "${arch1}" "$urls"
+        grep -iF "${arch2}" "$urls"
+        grep -iF "bin" "$urls"
+        grep -iF "musl" "$urls"
+        grep -iF "static" "$urls"
+        grep -iF ".tar" "$urls"
+
+        grep -ivF "android" "$urls"
+        grep -ivF "mac" "$urls"
+        grep -ivF "win" "$urls"
+
+        grep -i "\.zip$" "$urls"
+
+        grep -iv "\.asc$" "$urls"
+        grep -iv "\.b3$" "$urls"
+        grep -iv "\.deb$" "$urls"
+        grep -iv "\.sha256$" "$urls"
+        grep -iv "\.sha512$" "$urls"
+        grep -iv "\.sig$" "$urls"
+    } | sort | uniq -c | sort -n | tail -n1 | cut -c 9-)
+
+    curl --progress-bar -LO --output-dir "$download_dir" "$url"
+    hash=$(find "$download_dir" -type f -exec sha256sum '{}' ';' | cut -d' ' -f1)
+
+    file=$(find "$download_dir" -type f)
+    case $file in
+        *.tar) tar -xvf "$file" -C "$download_dir" >/dev/null ;;
+        *.tar.bz2) tar -xvf "$file" -C "$download_dir" >/dev/null ;;
+        *.tar.gz) tar -xvf "$file" -C "$download_dir" >/dev/null ;;
+        *.tar.xz) tar -xvf "$file" -C "$download_dir" >/dev/null ;;
+        *.tar.zst) tar -xvf "$file" -C "$download_dir" >/dev/null ;;
+        *.tbz) tar -xvf "$file" -C "$download_dir" >/dev/null ;;
+        *.tgz) tar -xvf "$file" -C "$download_dir" >/dev/null ;;
+        *.gz) gzip -d "$file" >/dev/null ;;
+        *.zip) (
+            cd "$download_dir" || return 1
+            unzip "$file" >/dev/null
+        ) ;;
+        *) ;;
+    esac
+
+    static_files=$(find "$download_dir" -type f -exec file '{}' '+' |
+        grep -E 'statically linked|static-pie linked' |
+        cut -d: -f1 |
+        sed "s#^$download_dir/##" |
+        sort)
+
+    if [ -z "$static_files" ]; then
+        echo "error:" >&2
+        return 1
+    fi
+
+    {
+        echo
+        echo "[$name.info]"
+        echo "version=$version"
+        echo
+        echo "[$name.update]"
+        echo "github=$repo"
+        echo
+        echo "[$name.linux_x86_64]"
+        echo "$static_files" | sed 's/^/install_bin=/'
+        echo "url=$url"
+        echo "hash=$hash"
+    } >>pkgs.ini
+
+    dipm inifmt pkgs.ini
+    ./dipm_check "$name"
+
+    git add pkgs.ini
+    git commit -m "$name: Add $version"
+    git show
+}
+
+cmd=$1
+
+case $cmd in
+    github) github "$2" "$3" ;;
+    *) exit 1 ;;
+esac

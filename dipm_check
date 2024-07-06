@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+pkg=$1
+prefix="$(mktemp -d)"
+
+mkdir -p "$prefix/share/dipm"
+cp pkgs.ini "$prefix/share/dipm/pkgs.ini"
+
+dipm --prefix "$prefix" install "$pkg"
+dipm --prefix "$prefix" installed | grep "$pkg"
+
+grep "location = " "$prefix/share/dipm/installed.ini"
+grep "location = " "$prefix/share/dipm/installed.ini" |
+    cut -d' ' -f3- |
+    xargs '-d\n' -I% file %
+
+dipm --prefix "$prefix" uninstall "$pkg"
+rm -r "$prefix"
