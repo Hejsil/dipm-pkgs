@@ -20,7 +20,7 @@ github() {
     content=$(mktemp -t "${name}_dipm.XXXXXXXXXX")
     urls=$(mktemp -t "${name}_dipm.XXXXXXXXXX")
     download_dir=$(mktemp -dt "${name}_dipm.XXXXXXXXXX")
-    cache -- curl -s "https://api.github.com/repos/$repo/releases/latest" >"$content"
+    curl -s "https://api.github.com/repos/$repo/releases/latest" >"$content"
     version=$(jq -r '.tag_name' "$content" | grep -Eo '[0-9]+\.[0-9]+(\.[0-9]+)?(\.[0-9]+)?')
 
     jq -r '.assets[].browser_download_url' "$content" >"$urls"
