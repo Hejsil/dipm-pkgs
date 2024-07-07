@@ -12,7 +12,8 @@ dipm --prefix "$prefix" installed | grep "$pkg"
 grep "location = " "$prefix/share/dipm/installed.ini"
 grep "location = " "$prefix/share/dipm/installed.ini" |
     cut -d' ' -f3- |
-    xargs '-d\n' -I% file %
+    xargs '-d\n' -I% file % |
+    grep --color -E 'statically linked|static-pie linked|$'
 
 dipm --prefix "$prefix" uninstall "$pkg"
 rm -r "$prefix"
