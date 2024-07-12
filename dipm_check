@@ -7,7 +7,7 @@ mkdir -p "$prefix/share/dipm"
 cp pkgs.ini "$prefix/share/dipm/pkgs.ini"
 
 dipm --prefix "$prefix" install "$pkg"
-dipm --prefix "$prefix" installed | grep "$pkg"
+dipm --prefix "$prefix" list installed | grep "$pkg"
 
 grep "location = " "$prefix/share/dipm/installed.ini"
 grep "location = " "$prefix/share/dipm/installed.ini" |
