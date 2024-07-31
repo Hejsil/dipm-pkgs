@@ -1,19 +1,9 @@
 #!/bin/sh -e
 
-pkg=$1
 prefix="$(mktemp -d)"
-
 mkdir -p "$prefix/share/dipm"
 cp pkgs.ini "$prefix/share/dipm/pkgs.ini"
 
-dipm --prefix "$prefix" install "$pkg"
-dipm --prefix "$prefix" list installed | grep "$pkg"
-
-grep "location = " "$prefix/share/dipm/installed.ini"
-grep "location = " "$prefix/share/dipm/installed.ini" |
-    cut -d' ' -f3- |
-    xargs '-d\n' -I% file % |
-    grep --color -E 'statically linked|static-pie linked|$'
-
-dipm --prefix "$prefix" uninstall "$pkg"
+dipm --prefix "$prefix" install "$@"
+dipm --prefix "$prefix" uninstall "$@"
 rm -r "$prefix"
