@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+# Check that a specific package in pkgs.ini can be installed/uninstalled
+
 prefix="$(mktemp -d)"
 mkdir -p "$prefix/share/dipm"
 cp pkgs.ini "$prefix/share/dipm/pkgs.ini"
