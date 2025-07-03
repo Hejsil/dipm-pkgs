@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+# To avoid breaking old versions of `dipm`, we create a new branch every time the format of
+# `pkgs.ini` changes. Each version of `dipm` should use the branch they're compatible with
+
+branch=$1
+
+git switch -c "$branch"
+git push --set-upstream origin "$branch"
+gh repo edit --default-branch "$branch"
+
